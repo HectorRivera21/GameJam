@@ -1,0 +1,4 @@
+repository "Trapped Forever@WEGAMINGAMIN@cloud"
+  path "/"
+    smartbranch "/main" 
+     
