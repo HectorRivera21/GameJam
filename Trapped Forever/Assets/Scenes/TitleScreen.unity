@@ -919,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4c4759b8c52084f963d86c3805ff88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: cards
+  sceneToLoad: GameplayExample
 --- !u!1 &1830604013
 GameObject:
   m_ObjectHideFlags: 0

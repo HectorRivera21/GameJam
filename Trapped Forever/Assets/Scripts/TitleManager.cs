@@ -22,7 +22,7 @@ public class TitleManager : MonoBehaviour
     public void StartGame()
     {
         // havent put anything to load just fill in when known
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void QuitGame()
