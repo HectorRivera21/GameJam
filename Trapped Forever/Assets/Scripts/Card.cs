@@ -6,6 +6,7 @@ public class Card : MonoBehaviour
 {
 	public bool hasBeenPlayed;
 	public int handIndex;
+	private bool isEnemyCard;
 
 	private GameManager gm;
 	void Start()
@@ -13,7 +14,13 @@ public class Card : MonoBehaviour
 		gm = FindObjectOfType<GameManager>();
 	}
     void Update()
-    {}
+    {
+		
+	}
+	public void SetIsEnemyCard(bool isEnemy)
+	{
+		isEnemyCard = isEnemy;
+	}
 	private void OnMouseDown()
 	{
 		if(hasBeenPlayed == false)
@@ -21,13 +28,28 @@ public class Card : MonoBehaviour
 			transform.position+=Vector3.up*5;
 			hasBeenPlayed = true;
 			gm.AvailableCardSlots[handIndex] = true;
-			Invoke("MoveToDiscardPile", 2f);
+			if (isEnemyCard)
+            {
+                gm.currentPlayerHealth-=10; // Damage to player
+            }
+            else
+            {
+                gm.currentEnemyHealth-=15; // Damage to enemy
+            }
+			Invoke("MoveToDiscardPile", 0.2f);
 		}
 	}
 	void MoveToDiscardPile()
 	{
-		gm.discardPile.Add(this);
-		gameObject.SetActive(false);
+		if (isEnemyCard)
+        {
+            gm.Enemydiscard.Add(this);
+        }
+        else
+        {
+            gm.discardPile.Add(this);
+        }
+        gameObject.SetActive(false);
 	}
 	
 }
