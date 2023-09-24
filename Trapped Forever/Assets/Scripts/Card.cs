@@ -7,43 +7,27 @@ public class Card : MonoBehaviour
 	public bool hasBeenPlayed;
 	public int handIndex;
 
-	GameManager gm;
-
-	private Animator anim;
-	private Animator camAnim;
-
-	public GameObject effect;
-	public GameObject hollowCircle;
-
-	private void Start()
-	{
+	private GameManager gm;
+	void Start()
+    {
 		gm = FindObjectOfType<GameManager>();
 	}
+    void Update()
+    {}
 	private void OnMouseDown()
 	{
-		if (!hasBeenPlayed)
+		if(hasBeenPlayed == false)
 		{
-			Instantiate(hollowCircle, transform.position, Quaternion.identity);
-			
-			camAnim.SetTrigger("shake");
-			anim.SetTrigger("move");
-
-			transform.position += Vector3.up * 3f;
+			transform.position+=Vector3.up*5;
 			hasBeenPlayed = true;
-			gm.availableCardSlots[handIndex] = true;
+			gm.AvailableCardSlots[handIndex] = true;
 			Invoke("MoveToDiscardPile", 2f);
-
-			
 		}
 	}
-
 	void MoveToDiscardPile()
 	{
-		Instantiate(effect, transform.position, Quaternion.identity);
 		gm.discardPile.Add(this);
 		gameObject.SetActive(false);
 	}
-
-
-
+	
 }
